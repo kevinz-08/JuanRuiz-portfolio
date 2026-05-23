@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import buttonSound from '../../assets/sonido_de_boton_para_abrir_portafolio.wav';
 
 interface IntroOverlayProps {
   onDismiss: () => void;
@@ -25,7 +26,7 @@ export function IntroOverlay({ onDismiss }: IntroOverlayProps) {
 
   // Preload audio so it fires instantly on click
   useEffect(() => {
-    const audio = new Audio('/src/assets/sonido_de_boton_para_abrir_portafolio.wav');
+    const audio = new Audio(buttonSound);
     audio.preload = 'auto';
     audio.load();
     audioRef.current = audio;

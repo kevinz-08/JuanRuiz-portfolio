@@ -1,3 +1,5 @@
+import fotoPerfil from '../../assets/foto_de_perfil.png';
+
 export function FormacionPanel() {
   return (
     <section id="formacion">
@@ -142,7 +144,7 @@ export function FormacionPanel() {
             <div className="form-dot"></div>
             <div className="form-header">
               <div className="form-logo-badge" style={{ width: '42px', height: '42px', borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(220,38,38,.35)', boxShadow: '0 0 12px rgba(220,38,38,.25)' }}>
-                <img src="/src/assets/foto_de_perfil.png" alt="Juan Ruiz" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={fotoPerfil} alt="Juan Ruiz" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div>
                 <div className="form-year">2023 – Presente · Aprendizaje continuo</div>
