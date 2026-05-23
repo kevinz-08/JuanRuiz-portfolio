@@ -96,8 +96,7 @@ function PlusIcon() {
   );
 }
 
-function FaqItemComponent({ item }: { item: FaqItem }) {
-  const [open, setOpen] = useState(false);
+function FaqItemComponent({ item, isOpen, onToggle }: { item: FaqItem; isOpen: boolean; onToggle: () => void }) {
   const [visible, setVisible] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
 
@@ -122,12 +121,12 @@ function FaqItemComponent({ item }: { item: FaqItem }) {
   return (
     <div
       ref={itemRef}
-      className={`faq-item${item.delay ? ' ' + item.delay : ''}${open ? ' open' : ''}${visible ? ' in' : ''}`}
+      className={`faq-item${item.delay ? ' ' + item.delay : ''}${isOpen ? ' open' : ''}${visible ? ' in' : ''}`}
     >
       <button
         className="faq-q"
-        aria-expanded={open}
-        onClick={() => setOpen(!open)}
+        aria-expanded={isOpen}
+        onClick={onToggle}
       >
         {item.question}
         <span className="faq-icon"><PlusIcon /></span>
@@ -142,6 +141,8 @@ function FaqItemComponent({ item }: { item: FaqItem }) {
 }
 
 export function FaqPanel() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <section id="faq">
       <div className="ctr">
@@ -153,7 +154,12 @@ export function FaqPanel() {
 
         <div className="faq-inner">
           {faqItems.map((item, i) => (
-            <FaqItemComponent key={i} item={item} />
+            <FaqItemComponent
+              key={i}
+              item={item}
+              isOpen={openIndex === i}
+              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+            />
           ))}
         </div>
       </div>
