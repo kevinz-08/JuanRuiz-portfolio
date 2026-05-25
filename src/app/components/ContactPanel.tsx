@@ -148,7 +148,7 @@ export function ContactPanel() {
               <p className="cal-title">¿Prefieres hablar directamente?</p>
               <p className="cal-desc">Agenda una videollamada de descubrimiento de 20 minutos</p>
             </div>
-            <a className="cal-btn" href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
+            <a className="cal-btn" href="https://calendly.com/juanruizedita/videollamada_descubrimiento" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24">
                 <rect x="3" y="4" width="18" height="18" rx="2"/>
                 <line x1="16" y1="2" x2="16" y2="6"/>

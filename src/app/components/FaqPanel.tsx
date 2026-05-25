@@ -59,7 +59,7 @@ const faqItems: FaqItem[] = [
     question: '¿Cómo funciona el pago?',
     delay: 'd4',
     answer: (
-      <p>Una vez analizado tu video y habiendo llegado a un acuerdo tanto en la idea final como en el precio, me pagarás el 50% por adelantado para iniciar el proyecto si es la primera vez que trabajamos. Esto con el objetivo de filtrar estafadores y oportunistas que al final no pagan.</p>
+      <p>Una vez lleguemos a un acuerdo de proyecto y precio, me pagarás el 50% por adelantado y el otro 50% una vez te haya entregado el proyecto completamente finalizado.</p>
     ),
   },
   {

@@ -19,6 +19,7 @@ const projects: Project[] = [
     title: 'Motion Graphics 2D & 3D',
     desc: 'Muestra de Motion Graphics con técnicas 2D y 3D combinadas. Un proyecto ambicioso que refleja por qué los Motion Graphics son la mejor forma de transmitir un mensaje con claridad e impacto visual.',
     delay: 'd1',
+    vimeoId: '1194993377',
   },
   {
     num: 'Proyecto 03',
@@ -31,6 +32,7 @@ const projects: Project[] = [
     title: 'Intro Dinámica',
     desc: 'Introducción creada para un youtuber del videojuego Roblox. La intro de un video debe ser dinámica y llamativa desde el primer segundo, y este proyecto es la demostración perfecta de ese principio.',
     delay: 'd1',
+    vimeoId: '1195356421',
   },
   {
     num: 'Proyecto 05',

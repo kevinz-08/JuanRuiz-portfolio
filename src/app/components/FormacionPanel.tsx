@@ -11,42 +11,6 @@ export function FormacionPanel() {
           <div className="srule rv d2"></div>
         </div>
 
-        {/* LENS 3D logo scene */}
-        <div className="form-scene rv d2">
-          <div className="lens-glow"></div>
-          <div className="lens-logo-3d">
-            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="lF" x1="15%" y1="8%" x2="85%" y2="92%">
-                  <stop offset="0%"   stopColor="#ff3a3a"/>
-                  <stop offset="50%"  stopColor="#d00000"/>
-                  <stop offset="100%" stopColor="#7a0000"/>
-                </linearGradient>
-                <linearGradient id="lR" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%"   stopColor="#560000"/>
-                  <stop offset="100%" stopColor="#2c0000"/>
-                </linearGradient>
-                <linearGradient id="lB" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%"   stopColor="#3e0000"/>
-                  <stop offset="100%" stopColor="#1a0000"/>
-                </linearGradient>
-                <linearGradient id="lS" x1="0%" y1="0%" x2="50%" y2="100%">
-                  <stop offset="0%"   stopColor="rgba(255,255,255,.30)"/>
-                  <stop offset="40%"  stopColor="rgba(255,255,255,.06)"/>
-                  <stop offset="100%" stopColor="rgba(255,255,255,0)"/>
-                </linearGradient>
-              </defs>
-              <rect x="10" y="8" width="164" height="164" rx="28" fill="url(#lF)"/>
-              <path d="M174 8 L194 24 L194 188 L174 172 Z" fill="url(#lR)"/>
-              <path d="M10 172 L30 188 L194 188 L174 172 Z" fill="url(#lB)"/>
-              <rect x="10" y="8" width="164" height="164" rx="28" fill="url(#lS)"/>
-              <path d="M32 28 Q60 18 92 22" stroke="rgba(255,255,255,.22)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-              <text x="22" y="112" fontFamily="Arial Black,Impact,sans-serif" fontWeight="900" fontSize="68" fill="#fff" letterSpacing="-3">lens</text>
-              <text x="22" y="134" fontFamily="Arial,sans-serif" fontWeight="800" fontSize="11" fill="rgba(255,255,255,.92)" letterSpacing="1.4">ESCUELA</text>
-              <text x="22" y="150" fontFamily="Arial,sans-serif" fontWeight="800" fontSize="11" fill="rgba(255,255,255,.92)" letterSpacing="1.4">DE ARTES VISUALES</text>
-            </svg>
-          </div>
-        </div>
 
         {/* Formation cards */}
         <div className="form-cards">

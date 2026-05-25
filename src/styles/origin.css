@@ -2185,7 +2185,7 @@ body:not(.intro-active) .bg-scene{
   font-family:var(--ff-display);
   font-size:clamp(1.4rem,2.6vw,1.9rem);
   font-weight:800;letter-spacing:-.03em;line-height:1.05;
-  background:linear-gradient(100deg,#fff 0%,#ff3535 45%,#fff 100%);
+  background:linear-gradient(100deg,#ff3535 0%,#fff 50%,#ff2a2a 100%);
   background-size:200% auto;
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;
