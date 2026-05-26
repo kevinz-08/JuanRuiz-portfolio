@@ -23,8 +23,9 @@ export function ContactPanel() {
     setState('sending');
     try {
       await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-        from_name: name,
-        from_email: email,
+        title: 'Portafolio Juan Ruiz',
+        name,
+        email,
         message,
       }, EMAILJS_PUBLIC);
       setState('success');
