@@ -26,8 +26,30 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      // Alias @ to the src directory
       '@': path.resolve(__dirname, './src'),
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'vendor-react';
+          }
+          if (id.includes('node_modules/motion/') || id.includes('node_modules/@motionone/')) {
+            return 'vendor-motion';
+          }
+          if (id.includes('node_modules/@emailjs/')) {
+            return 'vendor-email';
+          }
+          if (id.includes('node_modules/@radix-ui/')) {
+            return 'vendor-radix';
+          }
+          if (id.includes('node_modules/lucide-react/') || id.includes('node_modules/react-icons/')) {
+            return 'vendor-icons';
+          }
+        },
+      },
     },
   },
 })

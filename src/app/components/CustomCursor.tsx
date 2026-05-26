@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
 export function CustomCursor() {
@@ -13,15 +13,38 @@ export function CustomCursor() {
   const ringX = useSpring(mouseX, { stiffness: 150, damping: 22 });
   const ringY = useSpring(mouseY, { stiffness: 150, damping: 22 });
 
+  // Pending coords and RAF id — shared via refs to avoid stale closures
+  const pendingX = useRef(-200);
+  const pendingY = useRef(-200);
+  const rafId = useRef<number>(0);
+  const hasPending = useRef(false);
+  const visibleRef = useRef(false);
+
   useEffect(() => {
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
     document.body.style.cursor = 'none';
 
+    const flush = () => {
+      mouseX.set(pendingX.current);
+      mouseY.set(pendingY.current);
+      hasPending.current = false;
+    };
+
     const move = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-      if (!visible) setVisible(true);
+      pendingX.current = e.clientX;
+      pendingY.current = e.clientY;
+
+      if (!visibleRef.current) {
+        visibleRef.current = true;
+        setVisible(true);
+      }
+
+      // Schedule a single RAF per frame — skip if one is already queued
+      if (!hasPending.current) {
+        hasPending.current = true;
+        rafId.current = requestAnimationFrame(flush);
+      }
     };
 
     const over = (e: MouseEvent) => {
@@ -29,7 +52,10 @@ export function CustomCursor() {
       setHovering(!!t.closest('button, a, [role="button"], [data-cursor-hover]'));
     };
 
-    const hide = () => setVisible(false);
+    const hide = () => {
+      setVisible(false);
+      visibleRef.current = false;
+    };
 
     window.addEventListener('mousemove', move);
     window.addEventListener('mouseover', over);
@@ -37,6 +63,7 @@ export function CustomCursor() {
 
     return () => {
       document.body.style.cursor = '';
+      cancelAnimationFrame(rafId.current);
       window.removeEventListener('mousemove', move);
       window.removeEventListener('mouseover', over);
       document.documentElement.removeEventListener('mouseleave', hide);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import profilePhoto from '../../assets/profile-photo.jpg';
+import profilePhoto from '../../assets/profile-photo.webp';
 
 const sections = ['inicio', 'trabajos', 'herramientas', 'formacion', 'faq', 'contacto'];
 const labels: Record<string, string> = {
@@ -50,7 +50,7 @@ export function Navigation() {
       <nav>
         <div className={`pill${scrolled ? ' sc' : ''}`} id="pill">
           <button className="nlogo" id="logo-btn" aria-label="Inicio" onClick={() => handleNav('inicio')}>
-            <img src={profilePhoto} alt="Juan Ruiz" />
+            <img src={profilePhoto} alt="Juan Ruiz" width="30" height="30" decoding="async" fetchPriority="high" />
             <span className="nname">Juan Ruiz</span>
           </button>
           <div className="nright">

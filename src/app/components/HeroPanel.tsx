@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { scrollToSection } from './Navigation';
+import posterQuienSoyYo from '@/assets/Portada_video_quiensoyyo.webp';
 
 function loadVimeo(card: HTMLElement, poster: HTMLElement, vimeoId: string) {
   const iframe = document.createElement('iframe');
@@ -71,7 +72,13 @@ export function HeroPanel() {
 
           <div className="hvwrap">
             <div className="hvcard" id="hcard" ref={cardRef}>
-              <div className="vpost" id="hpost" ref={posterRef} onClick={handlePlayClick}>
+              <div
+                className="vpost"
+                id="hpost"
+                ref={posterRef}
+                onClick={handlePlayClick}
+                style={{ backgroundImage: `url(${posterQuienSoyYo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+              >
                 <div className="vplay plg">
                   <svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8V4z"/></svg>
                 </div>

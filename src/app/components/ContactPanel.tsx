@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
-const EMAILJS_SERVICE = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE = 'service_mi4iyaq';
+const EMAILJS_TEMPLATE = 'template_eeqpdqi';
+const EMAILJS_PUBLIC = 'uYJ2VI3LTy2Zshlz2';
 
 type FormState = 'idle' | 'sending' | 'success' | 'error';
 
@@ -21,15 +22,11 @@ export function ContactPanel() {
     if (!name.trim() || !email.trim() || !message.trim()) return;
     setState('sending');
     try {
-      // EmailJS integration — replace service/template/key with real values
-      const emailjs = (window as any).emailjs;
-      if (emailjs) {
-        await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-          from_name: name,
-          from_email: email,
-          message,
-        }, EMAILJS_PUBLIC);
-      }
+      await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+        from_name: name,
+        from_email: email,
+        message,
+      }, EMAILJS_PUBLIC);
       setState('success');
     } catch {
       setState('error');

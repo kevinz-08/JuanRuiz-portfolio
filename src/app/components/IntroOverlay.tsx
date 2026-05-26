@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import buttonSound from '../../assets/sonido_de_boton_para_abrir_portafolio.wav';
+import buttonSoundOgg from '../../assets/sonido_de_boton_para_abrir_portafolio.ogg';
+import buttonSoundMp3 from '../../assets/sonido_de_boton_para_abrir_portafolio.mp3';
 
 interface IntroOverlayProps {
   onDismiss: () => void;
@@ -24,10 +25,18 @@ export function IntroOverlay({ onDismiss }: IntroOverlayProps) {
     hue: 'r' | 'w';
   }
 
-  // Preload audio so it fires instantly on click
+  // Preload audio so it fires instantly on click (OGG Opus preferred, MP3 fallback)
   useEffect(() => {
-    const audio = new Audio(buttonSound);
+    const audio = new Audio();
     audio.preload = 'auto';
+    const srcOgg = document.createElement('source');
+    srcOgg.src = buttonSoundOgg;
+    srcOgg.type = 'audio/ogg; codecs=opus';
+    const srcMp3 = document.createElement('source');
+    srcMp3.src = buttonSoundMp3;
+    srcMp3.type = 'audio/mpeg';
+    audio.appendChild(srcOgg);
+    audio.appendChild(srcMp3);
     audio.load();
     audioRef.current = audio;
     return () => { audioRef.current = null; };
@@ -52,7 +61,10 @@ export function IntroOverlay({ onDismiss }: IntroOverlayProps) {
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    const COUNT = window.innerWidth < 700 ? 140 : 240;
+    const cores = navigator.hardwareConcurrency ?? 4;
+    const COUNT = (window.innerWidth < 700 || cores <= 4) ? 80
+      : cores <= 8 ? 140
+      : 240;
     function initStars() {
       starsRef.current = [];
       for (let i = 0; i < COUNT; i++) {

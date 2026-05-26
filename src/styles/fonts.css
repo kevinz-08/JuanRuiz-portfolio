@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Fuentes cargadas via <link> en index.html para evitar render-blocking */
 
 :root {
   --font-heading: 'Inter Tight', 'Inter', system-ui, sans-serif;

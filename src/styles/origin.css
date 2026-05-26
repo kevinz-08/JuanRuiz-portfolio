@@ -34,7 +34,6 @@ a{text-decoration:none;color:inherit}
 }
 
 html{
-  scroll-behavior:smooth;
   /* Better text rendering */
   -webkit-text-size-adjust:100%;
   text-rendering:optimizeLegibility;
@@ -124,8 +123,33 @@ body{
 
 /* Reduced motion respect */
 @media (prefers-reduced-motion: reduce){
-  .bg-sphere{animation-duration:120s!important}
-  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  /* Stop all animations and transitions */
+  *,*::before,*::after{
+    animation:none!important;
+    transition-duration:.001ms!important;
+    transition-delay:0ms!important;
+  }
+
+  /* Hide rotating orbs entirely instead of running them slowly */
+  .bg-sphere{display:none}
+
+  /* Solid color fallbacks for shimmer text — gradient congelado no es legible */
+  .shimmer-silver{
+    background:none;
+    -webkit-text-fill-color:#f0f0f5;
+    filter:none;
+  }
+  .shimmer-red{
+    background:none;
+    -webkit-text-fill-color:#ef4444;
+    filter:none;
+  }
+
+  /* Reveal elements must be visible immediately — skip the fade-in */
+  .rv{opacity:1;transform:none;filter:blur(0)}
+
+  /* Ripple rings on play buttons — stop */
+  .vplay::before,.vplay::after{display:none}
 }
 
 /* Mobile: simplify background */
@@ -568,6 +592,13 @@ nav{
 .vpost:hover .psm,.vpost:hover .plg,.vpost:hover .pbest{
   box-shadow:0 16px 60px rgba(220,38,38,.78);
 }
+.vpost--soon{cursor:default;}
+.vpost-soon-label{
+  font-size:1.35rem;font-weight:700;
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.22);
+  user-select:none;
+}
 
 /* ════════════════════════════════════════════════════════════
    TRABAJOS
@@ -614,6 +645,7 @@ nav{
 .flip-wrap{
   perspective:1600px;
   -webkit-perspective:1600px;
+  contain:layout style;
 }
 .flip{
   position:relative;
