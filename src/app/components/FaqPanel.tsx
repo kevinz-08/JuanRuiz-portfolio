@@ -36,7 +36,7 @@ const faqItems: FaqItem[] = [
         </div>
         <div className="faq-step">
           <p className="faq-step-title">Revisión y entrega</p>
-          <p className="faq-step-text">El video lo entrego a través de <strong style={{ color: 'rgba(255,255,255,.85)' }}>Frame</strong>, un sitio web en el que puedes marcar de forma precisa dónde quieres un cambio, para hacer todo más rápido y efectivo.</p>
+          <p className="faq-step-text">El video lo entrego a través de <strong style={{ color: 'rgba(255,255,255,.85)' }}>Frame.io</strong>, un sitio web en el que puedes marcar de forma precisa dónde quieres un cambio, para hacer todo más rápido y efectivo.</p>
         </div>
       </>
     ),
@@ -45,27 +45,34 @@ const faqItems: FaqItem[] = [
     question: '¿Cuánto tarda un proyecto?',
     delay: 'd2',
     answer: (
-      <p>Depende de la dificultad del video. Normalmente no más de una semana; en caso de ser más sencillo, un par de días.</p>
+      <p>Dependiendo de la dificultad del video y de los proyectos que tenga en proceso, la duración de la fase de creación puede variar, adaptándome siempre a las urgencias del cliente.</p>
     ),
   },
   {
     question: '¿Cuánto vale un video?',
     delay: 'd3',
     answer: (
-      <p>Cobro por hora. Al momento de analizar tu video calculo cuánto tiempo me va a tomar y en base a eso calculo un valor estimado.</p>
+      <p>Cobro por horas. Tras analizar tu proyecto y llegar a un acuerdo, evalúo con precisión cuántas horas tomará el proceso completo y en base a eso calculo el valor estimado. Si es la primera vez que trabajamos juntos, te haré un descuento del 20%.</p>
     ),
   },
   {
     question: '¿Cómo funciona el pago?',
     delay: 'd4',
     answer: (
-      <p>Una vez lleguemos a un acuerdo de proyecto y precio, me pagarás el 50% por adelantado y el otro 50% una vez te haya entregado el proyecto completamente finalizado.</p>
+      <p>Una vez lleguemos a un acuerdo de proyecto y precio, me pagarás el 30% por adelantado y el 70% restante una vez te haya entregado el proyecto completamente finalizado.</p>
     ),
   },
   {
     question: '¿Cómo es la comunicación entre el cliente y el editor?',
     answer: (
       <p>Después de haberme contactado y haber llegado a un acuerdo —ya sea en llamada o por chat— estableceremos un medio de contacto: puede ser el mismo que usaste para contactarme u otro (correo, X, Instagram o incluso TikTok). Yo iniciaré a trabajar en el video y en dicho medio te mostraré avances o sugerencias, y así sucesivamente.</p>
+    ),
+  },
+  {
+    question: '¿Puedo pedir cambios al video?',
+    delay: 'd1',
+    answer: (
+      <p>Puedes solicitar 1 ronda de cambios gratuita dentro de un margen de 1 semana tras la entrega. Fuera de ese plazo, el tiempo invertido en realizar los cambios equivaldrá a horas adicionales.</p>
     ),
   },
   {
@@ -100,8 +107,6 @@ function FaqItemComponent({ item, isOpen, onToggle }: { item: FaqItem; isOpen: b
   const [visible, setVisible] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
 
-  // Own IntersectionObserver so React controls the "in" class via state,
-  // preventing it from being wiped on re-renders when open toggles.
   useEffect(() => {
     const el = itemRef.current;
     if (!el) return;

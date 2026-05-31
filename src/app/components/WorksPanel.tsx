@@ -3,6 +3,7 @@ import posterMotion from '@/assets/portada_videomotiongraphics2Dy3D.webp';
 import posterIntro from '@/assets/portada_videointrodinamica.webp';
 import posterLogitech from '@/assets/portada_videologitech.webp';
 import posterFinal from '@/assets/portada_videotrabajofinaldecurso.webp';
+import posterEdicion from '@/assets/portada_videoedicionypostproduccion.webp';
 
 interface Project {
   num: string;
@@ -49,6 +50,8 @@ const projects: Project[] = [
     num: 'Proyecto 05',
     title: 'Edición & Postproducción',
     desc: 'Pieza visual centrada en el montaje y la postproducción de audio y color. Un tipo de video ideal para cortometrajes y proyectos que buscan contar una historia con una narrativa sólida y envolvente.',
+    vimeoId: '1197117729',
+    poster: posterEdicion,
   },
   {
     num: 'Proyecto 06',

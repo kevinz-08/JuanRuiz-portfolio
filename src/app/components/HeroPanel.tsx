@@ -34,7 +34,6 @@ export function HeroPanel() {
 
   function handlePlayClick() {
     if (!cardRef.current || !posterRef.current) return;
-    // Replace VIMEO_ID_AQUI with the actual Vimeo video ID
     loadVimeo(cardRef.current, posterRef.current, '1181714910');
   }
 
@@ -51,7 +50,7 @@ export function HeroPanel() {
               <span className="l1"><span className="shimmer-silver">Hagamos de tu idea un</span></span>
               <span className="l2"><span className="shimmer-red">video impactante</span></span>
             </h1>
-            <p className="hdesc">Edición profesional con Motion Graphics y VFX para elevar potencialmente la calidad de tu contenido</p>
+            <p className="hdesc">Edición profesional con Motion Graphics y VFX para llevar la calidad de tu contenido al siguiente nivel</p>
             <div className="hbtns">
               <button className="btnp" onClick={() => scrollToSection('trabajos')}>
                 <svg className="bico" viewBox="0 0 20 20">
