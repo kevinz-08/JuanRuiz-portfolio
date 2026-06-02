@@ -50,7 +50,7 @@ const projects: Project[] = [
     num: 'Proyecto 05',
     title: 'Edición & Postproducción',
     desc: 'Pieza visual centrada en el montaje y la postproducción de audio y color. Un tipo de video ideal para cortometrajes y proyectos que buscan contar una historia con una narrativa sólida y envolvente.',
-    vimeoId: '1197117729',
+    vimeoId: '1197456089',
     poster: posterEdicion,
   },
   {
