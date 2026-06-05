@@ -4,6 +4,7 @@ import posterIntro from '@/assets/portada_videointrodinamica.webp';
 import posterLogitech from '@/assets/portada_videologitech.webp';
 import posterFinal from '@/assets/portada_videotrabajofinaldecurso.webp';
 import posterEdicion from '@/assets/portada_videoedicionypostproduccion.webp';
+import posterPromo from '@/assets/portada_videopromocional.jpg';
 
 interface Project {
   num: string;
@@ -55,9 +56,11 @@ const projects: Project[] = [
   },
   {
     num: 'Proyecto 06',
-    title: 'VFX Cinematográficos',
-    desc: 'Mezcla de técnicas profesionales de VFX: integración de efectos visuales cinemáticos con rastreo de movimiento 2D, rastreo de cámara 3D, rastreo de superficies (Mocha AE), estabilización de movimiento y rotoscopia.',
+    title: 'Video Promocional',
+    desc: 'Anuncio publicitario creado de forma independiente para la marca de motos Yamaha. Incorpora edición, postproducción de audio y color, e integración de técnicas profesionales de VFX: rastreo de movimiento 2D, rastreo de cámara 3D, estabilización de movimiento y rotoscopia.',
     delay: 'd1',
+    vimeoId: '1198576587',
+    poster: posterPromo,
   },
 ];
 
