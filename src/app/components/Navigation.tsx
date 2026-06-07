@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import profilePhoto from '../../assets/profile-photo.webp';
+import profilePhoto from '../../assets/Foto_de_perfil_cara.png';
 
 const sections = ['inicio', 'trabajos', 'herramientas', 'formacion', 'faq', 'contacto'];
 const labels: Record<string, string> = {

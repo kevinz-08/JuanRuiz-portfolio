@@ -96,14 +96,17 @@ function FlipCard({ project, index }: { project: Project; index: number }) {
 
   return (
     <div className={`flip-wrap rv${project.delay ? ' ' + project.delay : ''}`}>
-      <div className={`flip${flipped ? ' flipped' : ''}`} data-flip={index + 1}>
+      <div className="flip-header">
         <button
           className="flip-toggle"
           aria-label={`Más información del video ${index + 1}`}
-          onClick={(e) => { e.stopPropagation(); setFlipped(!flipped); }}
+          onClick={() => setFlipped(!flipped)}
         >
           <InfoIcon />
+          <span className="flip-toggle-label">{flipped ? 'Ver video' : 'Más info'}</span>
         </button>
+      </div>
+      <div className={`flip${flipped ? ' flipped' : ''}`} data-flip={index + 1}>
 
         <div className="flip-face flip-front" ref={cardRef}>
           {isPlaceholder ? (
@@ -143,6 +146,10 @@ export function WorksPanel() {
           <span className="stitle rv d1"><span className="shimmer-silver">Proyectos</span></span>
           <div className="srule rv d2"></div>
         </div>
+
+        <p className="works-quality-hint rv d2">
+          Para ver los videos con mayor calidad y fluidez, después de darle clic a un video, ir a <span>⚙️</span>, luego ir a «Calidad» y seleccionar <strong>1080p</strong>
+        </p>
 
         <div className="wgrid">
           {projects.map((p, i) => (

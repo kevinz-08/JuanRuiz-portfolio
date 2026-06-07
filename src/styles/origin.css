@@ -726,32 +726,55 @@ nav{
 .flip-back-text::-webkit-scrollbar{width:4px}
 .flip-back-text::-webkit-scrollbar-thumb{background:rgba(220,38,38,.4);border-radius:2px}
 
-/* Info / flip toggle buttons */
+/* Info / flip toggle — header bar above each card */
+.flip-header{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:8px;
+}
 .flip-toggle{
-  position:absolute;
-  top:14px;right:14px;
-  width:36px;height:36px;
-  border-radius:50%;
-  background:rgba(10,8,14,.7);
+  display:flex;align-items:center;gap:7px;
+  height:34px;
+  padding:0 14px 0 10px;
+  border-radius:100px;
+  background:rgba(10,8,14,.75);
   border:1px solid rgba(220,38,38,.32);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
-  display:flex;align-items:center;justify-content:center;
   color:#fff;
   cursor:pointer;
-  z-index:5;
   transition:all .25s var(--e);
 }
 .flip-toggle:hover{
   background:rgba(220,38,38,.18);
   border-color:rgba(220,38,38,.6);
-  transform:scale(1.08);
   box-shadow:0 4px 16px rgba(220,38,38,.3);
 }
-.flip-toggle:active{transform:scale(.95)}
+.flip-toggle:active{transform:scale(.96)}
 .flip-toggle svg{
-  width:16px;height:16px;
+  width:15px;height:15px;
   stroke:currentColor;stroke-width:2;fill:none;
+  flex-shrink:0;
+}
+.flip-toggle-label{
+  font-size:.72rem;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+}
+
+/* Quality hint below Proyectos title */
+.works-quality-hint{
+  font-size:.8rem;
+  color:var(--t2);
+  text-align:center;
+  margin:0 auto 36px;
+  max-width:640px;
+  line-height:1.6;
+  letter-spacing:.01em;
+}
+.works-quality-hint strong{
+  color:rgba(255,255,255,.85);
+  font-weight:600;
 }
 
 /* Best section */
