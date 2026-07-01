@@ -59,7 +59,18 @@ const faqItems: FaqItem[] = [
     question: '¿Cómo funciona el pago?',
     delay: 'd4',
     answer: (
-      <p>Una vez lleguemos a un acuerdo de proyecto y precio, me pagarás el 30% por adelantado y el 70% restante una vez te haya entregado el proyecto completamente finalizado.</p>
+      <p>Una vez lleguemos a un acuerdo de proyecto y precio, me pagarás el 30% por adelantado para que yo pueda iniciar a trabajar y el 70% restante luego de que yo haya finalizado el proyecto, te lo haya mostrado y tu lo hayas aprobado, por ultimo te entregaré el video.</p>
+    ),
+  },
+  {
+    question: '¿Qué métodos de pago acepto?',
+    delay: 'd4',
+    answer: (
+      <>
+        <p>Clientes en Colombia: Transferencias vía <strong style={{ color: 'rgba(255,255,255,.85)' }}>Bancolombia</strong> o <strong style={{ color: 'rgba(255,255,255,.85)' }}>Nequi</strong>.</p>
+        <br />
+        <p>Clientes Internacionales: Pagos a través de <strong style={{ color: 'rgba(255,255,255,.85)' }}>PayPal</strong>, <strong style={{ color: 'rgba(255,255,255,.85)' }}>Binance</strong>, <strong style={{ color: 'rgba(255,255,255,.85)' }}>Wise</strong>, <strong style={{ color: 'rgba(255,255,255,.85)' }}>Airtm</strong>, <strong style={{ color: 'rgba(255,255,255,.85)' }}>Payoneer</strong> o <strong style={{ color: 'rgba(255,255,255,.85)' }}>DolarApp</strong>.</p>
+      </>
     ),
   },
   {
