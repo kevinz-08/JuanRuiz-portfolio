@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { IntroOverlay } from '@/app/components/IntroOverlay';
 import { BackgroundScene } from '@/app/components/BackgroundScene';
 import { ScrollProgress } from '@/app/components/ScrollProgress';
@@ -45,6 +46,8 @@ export default function App() {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
+
+      <Analytics />
     </>
   );
 }
