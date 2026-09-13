@@ -639,127 +639,41 @@ nav{
 }
 
 /* ════════════════════════════════════════════════════════════
-   FLIP CARDS — 3D rotation
-   Each item has front (video poster) and back (info text)
+   WORK CARDS — titled video tiles
 ════════════════════════════════════════════════════════════ */
-.flip-wrap{
-  perspective:1600px;
-  -webkit-perspective:1600px;
-  contain:layout style;
+.work-item{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
-.flip{
+.work-title{
+  font-family:var(--ff-display);
+  font-size:clamp(1.05rem,2vw,1.55rem);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:-.03em;
+  text-align:center;
+  margin:0;
+}
+.work-card{
   position:relative;
   width:100%;
   aspect-ratio:16/9;
-  transform-style:preserve-3d;
-  -webkit-transform-style:preserve-3d;
-  transition:transform .85s cubic-bezier(.65,.05,.36,1);
-  will-change:transform;
-}
-.flip.flipped{
-  transform:rotateY(180deg);
-}
-.flip-face{
-  position:absolute;inset:0;
-  border-radius:22px;overflow:hidden;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-}
-.flip-front{
+  border-radius:22px;
+  overflow:hidden;
   border:1px solid rgba(255,255,255,.08);
   background:#040206;
   box-shadow:
     0 1px 0 rgba(255,255,255,.04) inset,
     0 20px 50px -15px rgba(0,0,0,.7);
-  transition:border-color .35s var(--e),transform .35s var(--e),box-shadow .35s var(--e);
+  transition:border-color .35s var(--e),box-shadow .35s var(--e);
 }
-.flip-front:hover{
+.work-card:hover{
   border-color:rgba(220,38,38,.28);
   box-shadow:
     0 1px 0 rgba(255,255,255,.06) inset,
     0 20px 60px -15px rgba(0,0,0,.8),
     0 0 50px rgba(220,38,38,.1);
-}
-.flip-back{
-  transform:rotateY(180deg);
-  background:linear-gradient(155deg,rgba(20,8,12,.95) 0%,rgba(8,4,8,.95) 100%);
-  border:1px solid rgba(220,38,38,.28);
-  backdrop-filter:blur(20px) saturate(1.4);
-  -webkit-backdrop-filter:blur(20px) saturate(1.4);
-  box-shadow:
-    0 1px 0 rgba(220,38,38,.12) inset,
-    0 20px 60px -15px rgba(220,38,38,.18);
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:clamp(20px,3vw,30px);
-  text-align:center;
-}
-/* Back accent line top */
-.flip-back::before{
-  content:"";position:absolute;
-  top:0;left:18%;right:18%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(220,38,38,.5),transparent);
-}
-.flip-back-num{
-  font-family:var(--ff-display);
-  font-size:.78rem;font-weight:700;
-  letter-spacing:.18em;
-  color:rgba(220,38,38,.85);
-  margin-bottom:10px;
-  text-transform:uppercase;
-}
-.flip-back-title{
-  font-family:var(--ff-display);
-  font-size:clamp(1rem,1.5vw,1.2rem);
-  font-weight:800;letter-spacing:-.01em;
-  margin-bottom:12px;
-  line-height:1.2;
-}
-.flip-back-text{
-  font-size:clamp(.78rem,1vw,.86rem);
-  color:var(--t2);line-height:1.6;
-  flex:1;
-  overflow-y:auto;
-  scrollbar-width:thin;
-  scrollbar-color:rgba(220,38,38,.4) transparent;
-}
-.flip-back-text::-webkit-scrollbar{width:4px}
-.flip-back-text::-webkit-scrollbar-thumb{background:rgba(220,38,38,.4);border-radius:2px}
-
-/* Info / flip toggle — header bar above each card */
-.flip-header{
-  display:flex;
-  justify-content:flex-end;
-  margin-bottom:8px;
-}
-.flip-toggle{
-  display:flex;align-items:center;gap:7px;
-  height:34px;
-  padding:0 14px 0 10px;
-  border-radius:100px;
-  background:rgba(10,8,14,.75);
-  border:1px solid rgba(220,38,38,.32);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  color:#fff;
-  cursor:pointer;
-  transition:all .25s var(--e);
-}
-.flip-toggle:hover{
-  background:rgba(220,38,38,.18);
-  border-color:rgba(220,38,38,.6);
-  box-shadow:0 4px 16px rgba(220,38,38,.3);
-}
-.flip-toggle:active{transform:scale(.96)}
-.flip-toggle svg{
-  width:15px;height:15px;
-  stroke:currentColor;stroke-width:2;fill:none;
-  flex-shrink:0;
-}
-.flip-toggle-label{
-  font-size:.72rem;font-weight:600;
-  letter-spacing:.04em;text-transform:uppercase;
-  color:rgba(255,255,255,.85);
 }
 
 /* Quality hint below Proyectos title */
@@ -799,16 +713,6 @@ nav{
 @keyframes noteFlow{
   0%{background-position:0% center}
   100%{background-position:-250% center}
-}
-.fire{
-  display:inline-block;font-size:1.1em;
-  animation:fd 1.4s ease-in-out infinite;
-  transform-origin:bottom center;
-  -webkit-text-fill-color:initial;
-}
-@keyframes fd{
-  0%,100%{transform:scale(1) rotate(-8deg)}
-  50%{transform:scale(1.22) rotate(8deg)}
 }
 
 
@@ -1672,122 +1576,19 @@ body:not(.intro-active) .bg-scene{
   filter: blur(0);
 }
 /* ════════════════════════════════════════════════════════════
-   MIS HERRAMIENTAS — Cinematic Cosmic Asteroid Field
-   Heavy use of SVG filters (turbulence + lighting) for real
-   3D rock surfaces. Scroll-progress driven environment transform.
-══════════════════════════════════════════════════════════ */
-
-/* Section needs to be a SCROLL TRANSITION ZONE.
-   It's significantly taller than 100vh so the background can
-   transform smoothly as the user scrolls through it. */
+   MIS HERRAMIENTAS — Orbital system
+   Concentric glowing rings; each program rides its own orbit.
+════════════════════════════════════════════════════════════ */
 #herramientas{
   position:relative;
-  min-height:220vh;
-  padding:0;
+  padding:120px 0;
   z-index:2;
 }
 
-/* The cosmic stage is FIXED while the section is active — this creates the
-   true environment transformation. The cosmos overlays everything as the
-   user scrolls into the section. Visibility is JS-controlled via opacity. */
-.cosmos-stage{
-  position:fixed;
-  top:0;left:0;
-  width:100vw;
-  height:100vh;
-  overflow:hidden;
-  pointer-events:none;       /* default: page beneath gets pointer events */
-  z-index:1;
-  opacity:0;                 /* JS sets this based on scroll progress */
-  will-change:opacity;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.cosmos-stage.interactive{
-  pointer-events:auto;       /* enabled when env progress is high enough */
-}
-.cosmos-stage > .cosmos-content{ pointer-events:none; }
-.cosmos-stage.interactive > .cosmos-content{ pointer-events:auto; }
-
-/* Deep space gradient backdrop — appears as you enter, fades on exit.
-   Opacity controlled by JS scroll progress for smooth transformation. */
-.cosmos-bg{
-  position:absolute;inset:0;
-  z-index:1;
-  pointer-events:none;
-  /* Layered atmospheres: dark void + warm orange ground glow */
-  background:
-    radial-gradient(ellipse at 50% 110%, rgba(220,31,31,.18) 0%, transparent 45%),
-    radial-gradient(ellipse at 30% 80%, rgba(180,21,21,.08) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 50%, rgba(8,4,2,1) 0%, rgba(3,2,4,1) 70%, rgba(0,0,0,1) 100%);
-  opacity:0;
-  will-change:opacity;
-  transition:opacity .1s linear;
-}
-
-/* Volumetric fog at the bottom — like ground mist on the asteroid field */
-.cosmos-fog{
-  position:absolute;
-  left:0;right:0;bottom:0;
-  height:42%;
-  z-index:5;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 100%, rgba(255,42,42,.18) 0%, transparent 55%),
-    linear-gradient(to top, rgba(20,8,4,.6) 0%, rgba(10,5,3,.3) 40%, transparent 100%);
-  opacity:0;
-  will-change:opacity;
-  transition:opacity .1s linear;
-}
-
-/* Distant stars canvas */
-#cosmos-stars{
-  position:absolute;inset:0;
-  z-index:2;
-  pointer-events:none;
-  opacity:0;
-  will-change:opacity;
-  transition:opacity .15s linear;
-}
-
-/* Floating dust motes — drifting embers / cosmic dust */
-#cosmos-dust{
-  position:absolute;inset:0;
-  z-index:6;
-  pointer-events:none;
-  opacity:0;
-  will-change:opacity;
-  transition:opacity .15s linear;
-}
-
-/* Vignette to frame the scene */
-.cosmos-vignette{
-  position:absolute;inset:0;
-  z-index:9;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.55) 80%, rgba(0,0,0,.9) 100%);
-  opacity:0;
-  will-change:opacity;
-  transition:opacity .1s linear;
-}
-
-/* Header inside the cosmos stage */
-.cosmos-content{
-  position:relative;
-  z-index:10;
-  width:100%;
-  max-width:1280px;
-  padding:0 20px;
-  text-align:center;
-  opacity:0;
-  transform:translateY(40px);
-  will-change:transform, opacity;
-  transition:opacity .15s linear, transform .15s linear;
-}
+/* Header — same treatment as the previous cosmos header */
 .cosmos-hdr{
-  margin-bottom:30px;
+  text-align:center;
+  margin-bottom:10px;
 }
 .cosmos-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -1804,7 +1605,6 @@ body:not(.intro-active) .bg-scene{
   font-family:var(--ff-display);
   font-size:clamp(2.4rem,5.4vw,4.6rem);
   font-weight:900;line-height:.94;letter-spacing:-.04em;
-  /* Title uses an orange→white→orange shimmer to match the scene heat */
   background:linear-gradient(100deg,#ff3535 0%,#fff 50%,#ff2a2a 100%);
   background-size:200% auto;
   -webkit-background-clip:text;background-clip:text;
@@ -1828,321 +1628,135 @@ body:not(.intro-active) .bg-scene{
     0 0 60px rgba(255,21,21,.15);
 }
 
-/* The asteroid field — positioned absolutely in 3D space */
-.asteroid-field{
+/* ── Orbit system ── */
+.orbit-system{
   position:relative;
-  width:100%;
-  max-width:1320px;
-  height:clamp(360px,46vw,520px);
-  margin:50px auto 0;
+  width:min(100%,680px);
+  aspect-ratio:1;
+  margin:56px auto 0;
 }
 
-/* Individual asteroid container */
-.asteroid{
+/* Glowing white orbit line */
+.orbit-ring{
   position:absolute;
-  display:flex;flex-direction:column;align-items:center;
-  cursor:pointer;
-  pointer-events:inherit;
-  z-index:var(--z-order,10);
-  /* Per-asteroid CSS custom props for drift */
-  --drift-x: 12px;
-  --drift-y: -8px;
-  --rot-base: 0deg;
-  animation:asteroidFloat var(--float-dur,18s) ease-in-out infinite var(--float-delay,0s);
+  left:50%;top:50%;
+  width:var(--d);height:var(--d);
+  margin:calc(var(--d) / -2) 0 0 calc(var(--d) / -2);
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:
+    0 0 16px rgba(255,255,255,.10),
+    0 0 44px rgba(255,255,255,.05),
+    inset 0 0 34px rgba(255,255,255,.04);
+}
+
+/* The rotating layer — one per ring */
+.orbit-track{
+  position:absolute;inset:0;
+  animation:orbitSpin var(--dur,60s) linear infinite;
   will-change:transform;
-  transition:filter .5s var(--e);
 }
-@keyframes asteroidFloat{
-  0%,100%{transform:translate(0,0) rotate(var(--rot-base))}
-  25%    {transform:translate(var(--drift-x),var(--drift-y)) rotate(calc(var(--rot-base) + .6deg))}
-  50%    {transform:translate(calc(var(--drift-x)*.5),calc(var(--drift-y)*-.7)) rotate(calc(var(--rot-base) - .4deg))}
-  75%    {transform:translate(calc(var(--drift-x)*-.6),calc(var(--drift-y)*.3)) rotate(calc(var(--rot-base) + .3deg))}
-}
-.asteroid:hover{
-  filter:brightness(1.15);
+.orbit-track.ccw{animation-direction:reverse}
+@keyframes orbitSpin{
+  from{transform:rotate(0deg)}
+  to  {transform:rotate(360deg)}
 }
 
-/* ── ASTEROID ROCK — SVG-based irregular silhouette ──
-   Looks like image 2 reference: dark grey/charcoal asteroids
-   with subtle warm rim light, not bulbous "potato" shapes */
-.rock-host{
-  position:relative;
-  width:var(--rock-w,220px);
-  height:var(--rock-h,160px);
-  filter:
-    drop-shadow(0 18px 22px rgba(0,0,0,.65))
-    drop-shadow(0 0 18px rgba(255,31,31,.18));
-  transition:filter .5s var(--e);
+/* Static offset that places a node somewhere along the circumference */
+.orbit-arm{
+  position:absolute;inset:0;
+  transform:rotate(var(--angle,0deg));
 }
-.rock-img{
+.orbit-pos{
   position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
+  left:50%;top:0;
+  transform:translate(-50%,-50%);
+}
+
+/* Counter-rotation keeps every logo upright while the track spins */
+.orbit-counter{
+  display:block;
+  animation:orbitSpin var(--dur,60s) linear infinite reverse;
+  will-change:transform;
+}
+.orbit-track.ccw .orbit-counter{animation-direction:normal}
+
+/* Pause the whole system on hover so the logos are easy to click */
+.orbit-system:hover .orbit-track,
+.orbit-system:hover .orbit-counter{animation-play-state:paused}
+
+/* Subtle trail left behind along the orbit */
+.orbit-trail{
+  position:absolute;
+  left:50%;top:50%;
+  width:calc(var(--node) * 2.2);
+  height:calc(var(--node) * .66);
+  transform:translate(-100%,-50%);
+  border-radius:50%;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.07) 55%,
+    rgba(255,120,120,.16) 100%);
+  filter:blur(10px);
   pointer-events:none;
-  z-index:0;
 }
-.asteroid:hover .rock-host{
-  filter:
-    drop-shadow(0 22px 30px rgba(0,0,0,.75))
-    drop-shadow(0 0 28px rgba(255,49,49,.45))
-    drop-shadow(0 0 70px rgba(255,28,28,.28));
+.orbit-track.ccw .orbit-trail{transform:translate(0,-50%) scaleX(-1)}
+
+/* The program itself */
+.orbit-node{
+  position:relative;
+  display:grid;place-items:center;
+  width:var(--node);height:var(--node);
+  padding:0;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.20);
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255,255,255,.14) 0%, rgba(255,255,255,.03) 45%, rgba(8,6,10,.92) 100%);
+  box-shadow:
+    0 0 20px rgba(255,255,255,.13),
+    0 0 46px rgba(255,255,255,.05),
+    0 10px 30px rgba(0,0,0,.6),
+    inset 0 1px 0 rgba(255,255,255,.16);
+  cursor:pointer;
+  transform:rotate(calc(-1 * var(--angle,0deg))) scale(1);
+  transition:transform .35s var(--e), box-shadow .35s var(--e), border-color .35s var(--e);
 }
-.rock-host svg{
-  width:100%;height:100%;
+.orbit-node:hover,
+.orbit-node:focus-visible{
+  border-color:rgba(255,255,255,.45);
+  box-shadow:
+    0 0 28px rgba(255,255,255,.24),
+    0 0 64px rgba(220,38,38,.24),
+    0 12px 36px rgba(0,0,0,.65),
+    inset 0 1px 0 rgba(255,255,255,.22);
+  transform:rotate(calc(-1 * var(--angle,0deg))) scale(1.1);
+}
+.orbit-logo{
+  width:62%;height:62%;
+  object-fit:contain;
   display:block;
   pointer-events:none;
-}
-.rock-host::after{
-  content:"";
-  position:absolute;
-  inset:6%;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(ellipse at 50% 60%,
-    rgba(255,42,42,.15) 0%,
-    rgba(255,31,31,.08) 40%,
-    transparent 70%);
-  mix-blend-mode:screen;
-  opacity:.7;
-}
-/* ── LOGO — clean flat Adobe-style, matching image 2 ──
-   No exaggerated bevel. Just rounded square, subtle inner highlight,
-   strong drop shadow for floating effect. */
-.logo-mount{
-  position:absolute;
-  left:50%;top:-12%;
-  transform:translateX(-50%);
-  width:var(--logo-w,84px);
-  height:var(--logo-w,84px);
-  z-index:8;
-  transition:transform .45s var(--e), filter .45s var(--e);
-  pointer-events:none;       /* parent .asteroid handles clicks */
   filter:
-    drop-shadow(0 8px 16px rgba(0,0,0,.55))
-    drop-shadow(0 0 0 rgba(255,42,42,0));
-}
-.asteroid:hover .logo-mount{
-  transform:translateX(-50%) translateY(-10px);
-  filter:
-    drop-shadow(0 14px 24px rgba(0,0,0,.7))
-    drop-shadow(0 0 26px rgba(255,52,52,.5));
+    drop-shadow(0 0 7px rgba(255,255,255,.28))
+    drop-shadow(0 0 18px rgba(220,38,38,.20));
 }
 
-.logo-3d{
-  position:relative;
-  width:100%;height:100%;
-  border-radius:22%;
-  overflow:hidden;
-  /* Clean flat look — only subtle inner highlight, no heavy bevel */
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.18) inset,
-    0 -1px 0 rgba(0,0,0,.3) inset,
-    0 0 0 1px rgba(255,255,255,.08);
-  transition:box-shadow .45s var(--e);
-}
-.asteroid:hover .logo-3d{
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.25) inset,
-    0 -1px 0 rgba(0,0,0,.3) inset,
-    0 0 0 1px rgba(255,200,140,.25),
-    0 0 30px rgba(255,45,45,.3);
-}
-/* Subtle top-left sheen — much less aggressive than before */
-.logo-3d::before{
-  content:"";
-  position:absolute;inset:0;
-  border-radius:inherit;
-  background:linear-gradient(155deg,
-    rgba(255,255,255,.18) 0%,
-    rgba(255,255,255,.04) 30%,
-    transparent 50%
-  );
-  pointer-events:none;
-  z-index:3;
-}
-/* Very subtle bottom orange reflection — barely visible like reference */
-.logo-3d::after{
-  content:"";
-  position:absolute;inset:0;
-  border-radius:inherit;
-  background:linear-gradient(to top,
-    rgba(255,35,35,.12) 0%,
-    transparent 25%
-  );
-  pointer-events:none;
-  z-index:4;
-  opacity:.6;
-  transition:opacity .45s var(--e);
-}
-.asteroid:hover .logo-3d::after{ opacity:1; }
-.logo-3d-content{
-  position:absolute;inset:0;
-  z-index:2;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:inherit;
-}
-.logo-3d-content svg{
-  width:68%;height:68%;
-}
-
-/* Floating program name label below */
-.asteroid-label{
+/* Faint core at the center of the system */
+.orbit-core{
   position:absolute;
-  bottom:-32px;left:50%;
-  transform:translateX(-50%);
-  font-family:var(--ff-display);
-  font-size:.74rem;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(255,180,100,.92);
-  text-shadow:0 0 10px rgba(255,42,42,.5),0 2px 4px rgba(0,0,0,.85);
-  white-space:nowrap;
-  pointer-events:none;
-  opacity:0;
-  transition:opacity .35s var(--e), transform .35s var(--e);
-}
-.asteroid:hover .asteroid-label{
-  opacity:1;
-  transform:translateX(-50%) translateY(-4px);
-}
-/* Energy aura around logo on hover */
-.energy-aura{
-  position:absolute;
-  inset:-30%;
+  left:50%;top:50%;
+  width:clamp(60px,10vw,96px);
+  height:clamp(60px,10vw,96px);
+  transform:translate(-50%,-50%);
   border-radius:50%;
+  background:radial-gradient(circle, rgba(255,60,60,.22) 0%, rgba(255,40,40,.07) 45%, transparent 72%);
+  box-shadow:0 0 60px rgba(255,42,42,.18);
+  animation:orbitCorePulse 5s ease-in-out infinite;
   pointer-events:none;
-  z-index:0;
-  opacity:0;
-  background:radial-gradient(circle,
-    rgba(255,56,56,.35) 0%,
-    rgba(255,35,35,.15) 35%,
-    transparent 65%
-  );
-  filter:blur(14px);
-  transition:opacity .4s var(--e);
 }
-.asteroid:hover .energy-aura{
-  opacity:1;
-  animation:auraPulse 2s ease-in-out infinite;
-}
-@keyframes auraPulse{
-  0%,100%{transform:scale(1);opacity:.85}
-  50%    {transform:scale(1.12);opacity:1}
-}
-
-/* Energy particles spawned on hover (JS-created) */
-.spark{
-  position:fixed;
-  width:3px;height:3px;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:30;
-  animation:sparkRise var(--sp-dur,1.4s) ease-out forwards;
-  will-change:transform, opacity;
-}
-@keyframes sparkRise{
-  0%  {opacity:0;transform:translate(0,0) scale(.5)}
-  15% {opacity:1;transform:translate(0,-6px) scale(1)}
-  100%{opacity:0;transform:translate(var(--sp-dx,0px),var(--sp-dy,-70px)) scale(.1)}
-}
-
-/* Comet flying through the scene */
-.cosmos-comet{
-  position:absolute;
-  top:18%;left:-15%;
-  z-index:3;
-  pointer-events:none;
-  opacity:0;
-  will-change:transform, opacity;
-  animation:cometCross 22s linear infinite;
-  animation-play-state:paused;
-}
-.cosmos-stage.active .cosmos-comet{animation-play-state:running}
-.cosmos-comet-head{
-  width:4px;height:4px;border-radius:50%;
-  background:#fff;
-  box-shadow:
-    0 0 8px 2px rgba(255,255,255,.9),
-    0 0 20px 4px rgba(180,210,255,.7),
-    0 0 40px 8px rgba(120,160,255,.4);
-}
-.cosmos-comet-tail{
-  position:absolute;
-  right:4px;top:50%;
-  transform:translateY(-50%);
-  width:280px;height:1.5px;
-  background:linear-gradient(90deg,
-    transparent 0%,
-    rgba(150,200,255,.1) 20%,
-    rgba(200,220,255,.5) 60%,
-    rgba(255,255,255,.95) 100%
-  );
-  border-radius:2px;
-  filter:blur(.4px);
-}
-@keyframes cometCross{
-  0%  {transform:translate(0,0) rotate(-8deg);opacity:0}
-  6%  {opacity:1}
-  85% {opacity:.6}
-  100%{transform:translate(140vw,40vh) rotate(-8deg);opacity:0}
-}
-
-/* ════ Background drifting space rocks (parallax layer) ════
-   Mid-visibility ambient rocks that slowly drift across the cosmos
-   stage, adding depth without competing with the foreground asteroids. */
-.cosmos-bgrocks{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:2;        /* above stars (1) but below comet/content */
-  overflow:hidden;
-}
-.bgrock{
-  position:absolute;
-  width:clamp(60px, 9vw, 130px);
-  height:clamp(60px, 9vw, 130px);
-  opacity:.42;
-  filter:
-    drop-shadow(0 0 12px rgba(220,38,38,.18))
-    blur(.4px);
-  will-change:transform;
-}
-.bgrock-1{
-  top:18%;
-  animation:bgrockDrift1 95s linear infinite;
-}
-.bgrock-2{
-  top:62%;
-  animation:bgrockDrift2 120s linear infinite;
-  animation-delay:-30s;
-}
-.bgrock-3{
-  top:35%;
-  animation:bgrockDrift3 105s linear infinite;
-  animation-delay:-60s;
-}
-.bgrock-4{
-  top:78%;
-  animation:bgrockDrift4 140s linear infinite;
-  animation-delay:-90s;
-}
-.cosmos-stage.active .bgrock{animation-play-state:running}
-
-@keyframes bgrockDrift1{
-  0%   {transform:translateX(-15vw) rotate(0deg) scale(.85)}
-  100% {transform:translateX(120vw) rotate(120deg) scale(.85)}
-}
-@keyframes bgrockDrift2{
-  0%   {transform:translateX(115vw) rotate(0deg) scale(1.05)}
-  100% {transform:translateX(-20vw) rotate(-180deg) scale(1.05)}
-}
-@keyframes bgrockDrift3{
-  0%   {transform:translateX(-18vw) rotate(0deg) scale(.7)}
-  100% {transform:translateX(125vw) rotate(200deg) scale(.7)}
-}
-@keyframes bgrockDrift4{
-  0%   {transform:translateX(118vw) rotate(0deg) scale(.95)}
-  100% {transform:translateX(-22vw) rotate(-140deg) scale(.95)}
+@keyframes orbitCorePulse{
+  0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(1)}
+  50%    {opacity:1;  transform:translate(-50%,-50%) scale(1.08)}
 }
 
 /* ── TOOL MODAL ── */
@@ -2226,7 +1840,8 @@ body:not(.intro-active) .bg-scene{
   background:linear-gradient(145deg,rgba(255,255,255,.4) 0%,rgba(255,255,255,.1) 28%,transparent 60%);
   z-index:3;pointer-events:none;
 }
-.tool-modal-logo svg{width:100%;height:100%;position:relative;z-index:2;display:block}
+.tool-modal-logo svg,
+.tool-modal-logo img{width:100%;height:100%;object-fit:contain;position:relative;z-index:2;display:block}
 .tool-modal-info{flex:1;min-width:0}
 .tool-modal-tag{
   display:inline-block;margin-bottom:8px;
@@ -2253,20 +1868,10 @@ body:not(.intro-active) .bg-scene{
   line-height:1.75;
 }
 
-/* Responsive: stack asteroids on mobile */
+/* Responsive: tighten the orbit system on small screens */
 @media(max-width:760px){
-  #herramientas{min-height:auto;padding:60px 0}
-  .cosmos-stage{position:relative;height:auto;min-height:100vh;padding:60px 0;opacity:1!important;pointer-events:auto!important}
-  .cosmos-bg,.cosmos-fog,.cosmos-vignette,#cosmos-stars,#cosmos-dust{opacity:1!important}
-  .cosmos-content{opacity:1!important;transform:none!important}
-  .asteroid-field{
-    display:grid;grid-template-columns:repeat(2,1fr);
-    gap:60px 16px;height:auto;
-  }
-  .asteroid{position:relative!important;left:auto!important;top:auto!important;right:auto!important;margin-left:0!important;
-    animation:none;
-  }
-  .asteroid:nth-child(5){grid-column:1/-1}
-  .rock-host{--rock-w:160px;--rock-h:120px}
-  .logo-mount{--logo-w:62px}
+  #herramientas{padding:80px 0}
+  .orbit-system{width:min(100%,440px);margin-top:44px}
+  .orbit-logo{filter:drop-shadow(0 0 6px rgba(255,255,255,.24))}
 }
+
