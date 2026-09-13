@@ -1648,6 +1648,7 @@ body:not(.intro-active) .bg-scene{
     0 0 16px rgba(255,255,255,.10),
     0 0 44px rgba(255,255,255,.05),
     inset 0 0 34px rgba(255,255,255,.04);
+  pointer-events:none;        /* only the nodes are clickable */
 }
 
 /* The rotating layer — one per ring */
@@ -1655,6 +1656,7 @@ body:not(.intro-active) .bg-scene{
   position:absolute;inset:0;
   animation:orbitSpin var(--dur,60s) linear infinite;
   will-change:transform;
+  pointer-events:none;
 }
 .orbit-track.ccw{animation-direction:reverse}
 @keyframes orbitSpin{
@@ -1666,11 +1668,13 @@ body:not(.intro-active) .bg-scene{
 .orbit-arm{
   position:absolute;inset:0;
   transform:rotate(var(--angle,0deg));
+  pointer-events:none;
 }
 .orbit-pos{
   position:absolute;
   left:50%;top:0;
   transform:translate(-50%,-50%);
+  pointer-events:none;
 }
 
 /* Counter-rotation keeps every logo upright while the track spins */
@@ -1680,10 +1684,6 @@ body:not(.intro-active) .bg-scene{
   will-change:transform;
 }
 .orbit-track.ccw .orbit-counter{animation-direction:normal}
-
-/* Pause the whole system on hover so the logos are easy to click */
-.orbit-system:hover .orbit-track,
-.orbit-system:hover .orbit-counter{animation-play-state:paused}
 
 /* Subtle trail left behind along the orbit */
 .orbit-trail{
@@ -1718,6 +1718,7 @@ body:not(.intro-active) .bg-scene{
     0 10px 30px rgba(0,0,0,.6),
     inset 0 1px 0 rgba(255,255,255,.16);
   cursor:pointer;
+  pointer-events:auto;
   transform:rotate(calc(-1 * var(--angle,0deg))) scale(1);
   transition:transform .35s var(--e), box-shadow .35s var(--e), border-color .35s var(--e);
 }

@@ -145,6 +145,10 @@ export function ToolsPanel() {
                             type="button"
                             className="orbit-node"
                             aria-label={`Más información sobre ${tool.name}`}
+                            /* The node is always in motion: opening on pointer down
+                               avoids losing the click if the cursor and the logo
+                               drift apart between press and release. */
+                            onPointerDown={(e) => { if (e.pointerType === 'mouse') openTool(n.tool); }}
                             onClick={() => openTool(n.tool)}
                           >
                             <img className="orbit-logo" src={tool.logo} alt={tool.name} loading="lazy" />
