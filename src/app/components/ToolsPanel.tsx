@@ -1,9 +1,9 @@
 import { useState, type CSSProperties } from 'react';
-import logoAvid from '@/assets/AVID-MEDIA-COMPOSER-LOGO-1404x1404-1.png';
-import logoDv from '@/assets/DaVinci_Resolve_Studio.png';
-import logoAe from '@/assets/1280px-Adobe_After_Effects_CC_icon.svg.png';
-import logoPr from '@/assets/1280px-Adobe_Premiere_Pro_CC_icon.svg.png';
-import logoAu from '@/assets/1280px-Adobe_Audition_CC_icon_28202029.svg.png';
+import logoAvid from '@/assets/logo_avid.webp';
+import logoDv from '@/assets/logo_davinci.webp';
+import logoAe from '@/assets/logo_aftereffects.webp';
+import logoPr from '@/assets/logo_premiere.webp';
+import logoAu from '@/assets/logo_audition.webp';
 
 interface ToolData {
   key: string;

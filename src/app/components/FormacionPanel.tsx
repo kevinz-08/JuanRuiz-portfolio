@@ -1,4 +1,4 @@
-import fotoPerfil from '../../assets/Foto_de_perfil_cara.png';
+import fotoPerfil from '../../assets/Foto_de_perfil_cara.webp';
 
 export function FormacionPanel() {
   return (

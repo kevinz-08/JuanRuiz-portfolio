@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import profilePhoto from '../../assets/Foto_de_perfil_cara.png';
+import profilePhoto from '../../assets/Foto_de_perfil_cara.webp';
 
 const sections = ['inicio', 'trabajos', 'herramientas', 'formacion', 'faq', 'contacto'];
 const labels: Record<string, string> = {
@@ -14,9 +14,7 @@ const labels: Record<string, string> = {
 export function scrollToSection(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
-  let top = el.getBoundingClientRect().top + window.scrollY - 80;
-  // #herramientas fades in via scroll animation — jump past the fade-in zone
-  if (id === 'herramientas') top += window.innerHeight * 0.95;
+  const top = el.getBoundingClientRect().top + window.scrollY - 80;
   window.scrollTo({ top, behavior: 'smooth' });
 }
 

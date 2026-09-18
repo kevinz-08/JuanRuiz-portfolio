@@ -4,7 +4,7 @@ import posterIntro from '@/assets/portada_videointrodinamica.webp';
 import posterLogitech from '@/assets/portada_videologitech.webp';
 import posterFinal from '@/assets/portada_videotrabajofinaldecurso.webp';
 import posterEdicion from '@/assets/portada_videoedicionypostproduccion.webp';
-import posterPromo from '@/assets/portada_videopromocional.jpg';
+import posterPromo from '@/assets/portada_videopromocional.webp';
 
 interface Project {
   title: string;

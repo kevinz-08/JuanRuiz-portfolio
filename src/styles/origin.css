@@ -47,6 +47,7 @@ body{
   overflow-x:hidden;
   min-height:100vh;
 }
+main{overflow-x:clip}
 
 /* ════════════════════════════════════════════════════════════
    BACKGROUND — pure SVG, GPU accelerated
@@ -1583,6 +1584,10 @@ body:not(.intro-active) .bg-scene{
   position:relative;
   padding:120px 0;
   z-index:2;
+  /* The rotated orbit layers have bounding boxes wider than the screen;
+     Android Chrome widens the whole page to fit them unless clipped here
+     (same treatment as #trabajos, #faq and #contacto). */
+  overflow:hidden;
 }
 
 /* Header — same treatment as the previous cosmos header */
