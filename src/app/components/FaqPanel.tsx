@@ -10,7 +10,7 @@ const faqItems: FaqItem[] = [
   {
     question: '¿Qué tipo de videos editas?',
     answer: (
-      <p>Normalmente videos cortos de un minuto enfocados en Motion Graphics de alto nivel para lograr un entendimiento y entretenimiento máximos del espectador, ¡pero todo tipo de videos son bienvenidos!</p>
+      <p>Me enfoco en anuncios de productos digitales con Motion Graphics avanzados. Pero estoy abierto a ofertas.</p>
     ),
   },
   {
@@ -20,23 +20,34 @@ const faqItems: FaqItem[] = [
       <>
         <div className="faq-step">
           <p className="faq-step-title">Análisis</p>
-          <p className="faq-step-text">Analizo tu tipo de video y entiendo qué es lo que necesitas.</p>
+          <p className="faq-step-text">Analizo tu producto/servicio y entiendo qué es lo que necesitas.</p>
         </div>
         <div className="faq-step">
-          <p className="faq-step-title">Entrega de material</p>
-          <p className="faq-step-text">Recibo el material que me proporciones: imágenes, videos, archivos 3D, efectos de sonido, música, grafismos… Lo que tengas disponible. En caso de no haber nada, llegamos a un acuerdo.</p>
+          <p className="faq-step-title">Anticipo del 30%</p>
+          <p className="faq-step-text">Un anticipo del 30% para asegurar el cupo en agenda y dar inicio al proyecto con total tranquilidad para ambas partes.</p>
         </div>
         <div className="faq-step">
-          <p className="faq-step-title">Planeación</p>
-          <p className="faq-step-text">Hago un boceto mental y digital del video con base en tu idea y estructura. Si se me ocurre alguna mejora, te la comunico antes de llevarla a cabo.</p>
+          <p className="faq-step-title">Ideación mutua</p>
+          <p className="faq-step-text">Ideo la estructura completa del proyecto, te la propongo y la moldeamos con mi criterio y tu visión acorde a lo que es factible.</p>
         </div>
         <div className="faq-step">
-          <p className="faq-step-title">Edición</p>
-          <p className="faq-step-text">Inicia todo el proceso. Dependiendo de tu video se usarán ciertos parámetros: montaje, ritmo, diseño de sonido, ajustes de color, etc. Cada uno de estos ajustes enfocado en llegar al video que buscas.</p>
+          <p className="faq-step-title">Storyboard y Modificación</p>
+          <p className="faq-step-text">Armo un storyboard, el cual es un mapa visual completo desglosando el proyecto. Te lo propongo y me das tu feedback para hacer los ajustes requeridos.</p>
         </div>
         <div className="faq-step">
-          <p className="faq-step-title">Revisión y entrega</p>
-          <p className="faq-step-text">El video lo entrego a través de <strong style={{ color: 'rgba(255,255,255,.85)' }}>Frame.io</strong>, un sitio web en el que puedes marcar de forma precisa dónde quieres un cambio, para hacer todo más rápido y efectivo.</p>
+          <p className="faq-step-title">Ejecución completa</p>
+          <p className="faq-step-text">Inicia todo el proceso. Edición, animación y postproducción.</p>
+        </div>
+        <div className="faq-step">
+          <p className="faq-step-title">Revisión y aprobación</p>
+          <p className="faq-step-text"><strong style={{ color: 'rgba(255,255,255,.85)' }}>1 ronda de cambios incluida.</strong> El video lo entrego a través de <strong style={{ color: 'rgba(255,255,255,.85)' }}>Frame.io</strong>, un sitio web en el que puedes marcar de forma precisa dónde quieres un cambio para hacer todo más rápido y efectivo.</p>
+        </div>
+        <div className="faq-step">
+          <p className="faq-step-title">Pago del 70%</p>
+          <p className="faq-step-text">Pago final.</p>
+        </div>
+        <div className="faq-step">
+          <p className="faq-step-title">¡Entrega del enlace de descarga!</p>
         </div>
       </>
     ),
@@ -52,7 +63,7 @@ const faqItems: FaqItem[] = [
     question: '¿Cuánto vale un video?',
     delay: 'd3',
     answer: (
-      <p>Cobro por horas. Tras analizar tu proyecto y llegar a un acuerdo, evalúo con precisión cuántas horas tomará el proceso completo y en base a eso calculo el valor estimado. Si es la primera vez que trabajamos juntos, te haré un descuento del 20%.</p>
+      <p>Cobro en base a la dificultad del proyecto y la duración estimada. Tras analizar tu proyecto y llegar a un acuerdo te lo comentaré con certeza.</p>
     ),
   },
   {
@@ -83,24 +94,14 @@ const faqItems: FaqItem[] = [
     question: '¿Puedo pedir cambios al video?',
     delay: 'd1',
     answer: (
-      <p>Puedes solicitar 1 ronda de cambios gratuita dentro de un margen de 1 semana tras la entrega. Fuera de ese plazo, el tiempo invertido en realizar los cambios equivaldrá a horas adicionales.</p>
+      <p>Puedes solicitar 1 ronda de cambios gratuita dentro de un margen de 1 semana tras la entrega. Cualquier ronda de cambios adicional tendrá un 20% extra del valor total del proyecto.</p>
     ),
   },
   {
     question: '¿Qué tipo de cambios puedes pedir en el video?',
     delay: 'd1',
     answer: (
-      <>
-        <p>La edición es como una torre de Jenga: si quieres cambiar algo, dependiendo de en qué posición de la torre esté, puede hacer que cierta parte de la edición se pierda.</p>
-        <br />
-        <p>Existen 2 elementos que son prácticamente imposibles de cambiar una vez iniciada la edición:</p>
-        <ul>
-          <li><strong style={{ color: 'rgba(255,255,255,.8)' }}>Música</strong> — El director de la obra; marca el ritmo de todo.</li>
-          <li><strong style={{ color: 'rgba(255,255,255,.8)' }}>Clips</strong> — El material de construcción.</li>
-        </ul>
-        <br />
-        <p>Sin embargo, me aseguraré de que estés de acuerdo con el uso de todo el material antes de usarlo. Eso sí, queda de tu parte mantener tu palabra de aprobación.</p>
-      </>
+      <p>Cambios que no alteren la estructura: Colores, Tipografías, Movimientos, SFX, detalles.</p>
     ),
   },
 ];

@@ -974,7 +974,7 @@ footer::before{
   opacity:0;
 }
 .faq-item.open .faq-body{
-  max-height:600px;
+  max-height:1600px;
   opacity:1;
 }
 .faq-body-inner{
