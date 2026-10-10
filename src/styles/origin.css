@@ -423,18 +423,15 @@ nav{
   padding:130px 0 80px;
   overflow:hidden;
 }
-.hgrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:clamp(40px,5vw,72px);
-  align-items:center;
-}
-@media(max-width:880px){
-  .hgrid{grid-template-columns:1fr;gap:48px}
+.hcenter{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  max-width:980px;
+  margin:0 auto;
 }
 
 .hrow{
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
   margin-bottom:22px;
   opacity:0;animation:fadeUp .65s .1s var(--e) forwards;
 }
@@ -468,13 +465,13 @@ nav{
 }
 
 .hdesc{
-  font-size:1rem;color:var(--t2);
-  line-height:1.7;max-width:460px;
-  margin-bottom:36px;
+  font-size:clamp(1rem,1.4vw,1.12rem);color:var(--t2);
+  line-height:1.7;max-width:560px;
+  margin:0 auto 40px;
   opacity:0;animation:fadeUp .7s .55s var(--e) forwards;
 }
 .hbtns{
-  display:flex;flex-wrap:wrap;gap:12px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
   opacity:0;animation:fadeUp .7s .7s var(--e) forwards;
 }
 
@@ -513,35 +510,6 @@ nav{
 .bico{
   width:18px;height:18px;flex-shrink:0;
   stroke:currentColor;stroke-width:1.8;fill:none;
-}
-
-/* Hero video card */
-.hvwrap{
-  position:relative;
-  opacity:0;animation:fadeLeft .85s .35s var(--e) forwards;
-}
-.hvcard{
-  position:relative;
-  border-radius:24px;overflow:hidden;
-  aspect-ratio:16/9;
-  border:1px solid rgba(220,38,38,.2);
-  background:#040208;
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.05) inset,
-    0 50px 120px -20px rgba(0,0,0,.85),
-    0 0 0 1px rgba(220,38,38,.06);
-  backdrop-filter:blur(20px) saturate(1.6);
-  -webkit-backdrop-filter:blur(20px) saturate(1.6);
-  transition:border-color .35s var(--e),transform .35s var(--e),box-shadow .35s var(--e);
-  will-change:transform;
-}
-.hvcard:hover{
-  border-color:rgba(220,38,38,.35);
-  transform:translateY(-4px);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.07) inset,
-    0 60px 140px -20px rgba(0,0,0,.85),
-    0 0 70px rgba(220,38,38,.1);
 }
 
 /* Video poster */
@@ -1102,236 +1070,18 @@ footer::before{
 }
 
 /* ════════════════════════════════════════════════════════════
-   INTRO OVERLAY — Modern UI soft entry
+   PAGE ENTRY — the portfolio loads directly; the nav pill and the
+   background fade in while the hero elements rise (fadeUp).
 ════════════════════════════════════════════════════════════ */
-
-body.intro-active{
-  overflow:hidden;
-  height:100vh;
+@keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
+.pill{animation:pillIn .9s .05s cubic-bezier(.22,1,.36,1) both}
+@keyframes pillIn{
+  from{opacity:0;transform:translateY(-14px);filter:blur(5px)}
+  to  {opacity:1;transform:translateY(0);filter:blur(0)}
 }
-body.intro-active main,
-body.intro-active footer,
-body.intro-active nav,
-body.intro-active #sln,
-body.intro-active .bg-scene{
-  opacity:0;
-  pointer-events:none;
-}
-/* Freeze hero CSS keyframe animations while intro is active —
-   assembly will take over with its own transition */
-body.intro-active #inicio .hrow,
-body.intro-active #inicio .hh1 .l1,
-body.intro-active #inicio .hh1 .l2,
-body.intro-active #inicio .hdesc,
-body.intro-active #inicio .hbtns,
-body.intro-active #inicio .hvwrap{
-  animation:none;
-  opacity:0;
-}
-body:not(.intro-active) main,
-body:not(.intro-active) footer,
-body:not(.intro-active) nav,
-body:not(.intro-active) .bg-scene{
-  opacity:1;
-  transition:opacity 1.6s cubic-bezier(.22,1,.36,1);
-}
-
-/* Overlay */
-.intro{
-  position:fixed;inset:0;
-  z-index:99999;
-  background:radial-gradient(ellipse at 50% 40%,#0a0814 0%,#030208 60%,#000003 100%);
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;
-  overflow:hidden;
-  transform:translateZ(0);
-  will-change:opacity;
-  transition:opacity 1.1s cubic-bezier(.22,1,.36,1);
-}
-.intro.gone{
-  opacity:0;
-  pointer-events:none;
-}
-
-/* Subtle ambient glow behind content */
-.intro::before{
-  content:"";
-  position:absolute;
-  width:80vw;height:80vw;
-  max-width:900px;max-height:900px;
-  left:50%;top:50%;
-  transform:translate(-50%,-52%);
-  background:radial-gradient(circle at 50% 50%,
-    rgba(220,38,38,.055) 0%,
-    rgba(180,20,20,.025) 35%,
-    transparent 65%
-  );
-  z-index:1;
-  pointer-events:none;
-  animation:introGlow 7s ease-in-out infinite;
-}
-@keyframes introGlow{
-  0%,100%{opacity:.7;transform:translate(-50%,-52%) scale(1)}
-  50%{opacity:1;transform:translate(-50%,-52%) scale(1.06)}
-}
-
-/* Vignette */
-.intro::after{
-  content:"";
-  position:absolute;inset:0;z-index:2;
-  background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(0,0,0,.7) 100%);
-  pointer-events:none;
-}
-
-/* Stars canvas */
-#stars{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  z-index:1;
-}
-
-/* Centered content */
-.intro-center{
-  position:relative;z-index:5;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:24px;
-  text-align:center;
-  padding:0 20px;
-  will-change:transform, opacity;
-  transition:
-    transform 1.4s cubic-bezier(.22,1,.36,1),
-    opacity   1.0s cubic-bezier(.22,1,.36,1);
-}
-/* On click: button lifts, scales toward screen and fades out */
-.intro-center.departing{
-  transform:scale(1.18) translateY(-8px);
-  opacity:0;
-}
-
-.intro-tag{
-  font-size:.68rem;font-weight:600;
-  letter-spacing:.32em;text-transform:uppercase;
-  color:rgba(220,38,38,.85);
-  opacity:0;
-  animation:introFadeUp .85s .25s cubic-bezier(.22,1,.36,1) forwards;
-}
-.intro-title{
-  font-family:var(--ff-display);
-  font-size:clamp(2.2rem,5.5vw,4.2rem);
-  font-weight:900;
-  letter-spacing:-.04em;
-  line-height:1;
-  opacity:0;
-  animation:introFadeUp .85s .42s cubic-bezier(.22,1,.36,1) forwards;
-  background:linear-gradient(100deg,#f0f0f5 0%,#fff 50%,#c8c8d0 100%);
-  background-size:200% auto;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:introFadeUp .85s .42s cubic-bezier(.22,1,.36,1) forwards, silverFlow 6s linear infinite;
-}
-.intro-sub{
-  font-size:.9rem;
-  color:rgba(255,255,255,.5);
-  max-width:360px;
-  line-height:1.6;
-  opacity:0;
-  animation:introFadeUp .85s .6s cubic-bezier(.22,1,.36,1) forwards;
-}
-
-@keyframes introFadeUp{
-  from{opacity:0;transform:translateY(18px)}
-  to  {opacity:1;transform:translateY(0)}
-}
-
-/* ── Open button ── */
-.intro-btn{
-  position:relative;
-  display:inline-flex;align-items:center;gap:11px;
-  margin-top:10px;
-  padding:16px 36px;
-  font-family:var(--ff-body);
-  font-size:.92rem;font-weight:600;
-  letter-spacing:.02em;
-  color:#fff;
-  background:linear-gradient(135deg,#991b1b 0%,#dc2626 100%);
-  border:none;border-radius:100px;
-  cursor:pointer;
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.08) inset,
-    0 6px 28px rgba(220,38,38,.42),
-    0 0 0 0 rgba(220,38,38,.0);
-  opacity:0;
-  animation:introFadeUp .85s .82s cubic-bezier(.22,1,.36,1) forwards;
-  /* Hover/idle transitions */
-  transition:
-    transform      .4s  cubic-bezier(.22,1,.36,1),
-    box-shadow     .4s  cubic-bezier(.22,1,.36,1),
-    background     .3s  ease,
-    opacity        .4s  ease;
-  will-change:transform, box-shadow;
-  overflow:hidden;
-  /* Subtle sweep shimmer at rest */
-}
-/* Sweep shine — idle loop */
-.intro-btn::before{
-  content:"";
-  position:absolute;inset:0;
-  background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.22) 50%,transparent 68%);
-  background-size:200% 100%;
-  background-position:-100% 0;
-  animation:btnSweep 3.2s ease-in-out infinite 1.5s;
-  pointer-events:none;
-}
-@keyframes btnSweep{
-  0%  {background-position:-100% 0}
-  50% {background-position:200% 0}
-  100%{background-position:200% 0}
-}
-/* Outer ring pulse — idle */
-.intro-btn::after{
-  content:"";
-  position:absolute;inset:-4px;
-  border:1px solid rgba(220,38,38,.38);
-  border-radius:100px;
-  animation:btnRing 2.8s ease-out infinite;
-  pointer-events:none;
-}
-@keyframes btnRing{
-  0%  {opacity:.7;transform:scale(1)}
-  100%{opacity:0;transform:scale(1.35)}
-}
-/* Hover state — lifts gently */
-.intro-btn:hover{
-  transform:translateY(-3px) scale(1.035);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.12) inset,
-    0 12px 40px rgba(239,68,68,.58),
-    0 0 70px rgba(239,68,68,.28);
-  background:linear-gradient(135deg,#b91c1c 0%,#ef4444 100%);
-}
-/* Click — lights up brightly, rises, then class .departing takes over */
-.intro-btn.clicked{
-  transform:translateY(-6px) scale(1.06);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.22) inset,
-    0 18px 55px rgba(239,68,68,.75),
-    0 0 100px rgba(239,68,68,.5),
-    0 0 140px rgba(220,38,38,.25);
-  background:linear-gradient(135deg,#ef4444 0%,#fca5a5 100%);
-  transition:
-    transform  .25s cubic-bezier(.22,1,.36,1),
-    box-shadow .25s ease,
-    background .2s  ease;
-}
-.intro-btn svg{
-  width:17px;height:17px;
-  stroke:#fff;stroke-width:2;fill:none;flex-shrink:0;
-}
-
+.bg-scene{animation:pageFadeIn 1.6s cubic-bezier(.22,1,.36,1) both}
 @media (prefers-reduced-motion: reduce){
-  .intro::before{animation:none}
-  .intro-btn::before,.intro-btn::after{animation:none}
+  .pill,.bg-scene{animation:none}
 }
 
 
@@ -1557,25 +1307,6 @@ body:not(.intro-active) .bg-scene{
   .form-card.featured .form-dot{left:9px}
 }
 
-/* ════════════════════════════════════════════════════════════
-   SMOOTH ASSEMBLY — same feel as intro departure, reversed:
-   elements rise softly from below and fade into place.
-══════════════════════════════════════════════════════════ */
-.asm-pre{
-  opacity: 0;
-  transform: translateY(24px);
-  filter: blur(5px);
-  will-change: transform, opacity, filter;
-  transition:
-    transform 1.0s cubic-bezier(.22, 1, .36, 1),
-    opacity   0.8s cubic-bezier(.22, 1, .36, 1),
-    filter    0.75s ease-out;
-}
-.asm-pre.asm-in{
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
 /* ════════════════════════════════════════════════════════════
    MIS HERRAMIENTAS — Orbital system
    Concentric glowing rings; each program rides its own orbit.

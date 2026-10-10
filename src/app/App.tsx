@@ -1,6 +1,5 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { Analytics } from '@vercel/analytics/react';
-import { IntroOverlay } from '@/app/components/IntroOverlay';
 import { BackgroundScene } from '@/app/components/BackgroundScene';
 import { ScrollProgress } from '@/app/components/ScrollProgress';
 import { Navigation } from '@/app/components/Navigation';
@@ -15,19 +14,10 @@ const ContactPanel  = lazy(() => import('@/app/components/ContactPanel').then(m 
 const Footer        = lazy(() => import('@/app/components/Footer').then(m => ({ default: m.Footer })));
 
 export default function App() {
-  const [introDone, setIntroDone] = useState(false);
-
   useScrollReveal();
-
-  useEffect(() => {
-    document.body.classList.add('intro-active');
-    return () => document.body.classList.remove('intro-active');
-  }, []);
 
   return (
     <>
-      {!introDone && <IntroOverlay onDismiss={() => setIntroDone(true)} />}
-
       <BackgroundScene />
       <ScrollProgress />
       <Navigation />
