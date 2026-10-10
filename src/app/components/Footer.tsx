@@ -7,7 +7,7 @@ export function Footer() {
         <div className="frow">
           <div>
             <p className="fbrand">Juan Ruiz</p>
-            <p className="ftag">Editor y Postproductor de Video</p>
+            <p className="ftag">Editor de video y Motion Designer</p>
           </div>
           <div className="fsocs">
             <a className="fsoc" href="https://www.youtube.com/@juanruizeditaa" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
